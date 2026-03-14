@@ -36,7 +36,10 @@ jobs:
     - name: Build Flutter Web
       run: |
         flutter config --enable-web
-        flutter build web --release --base-href "/life_master/"
+        flutter build web --release --base-href "/"
+
+    - name: Copy CNAME to build directory
+      run: cp CNAME build/web/CNAME
 
     - name: List build directory
       run: ls -la build/web/
