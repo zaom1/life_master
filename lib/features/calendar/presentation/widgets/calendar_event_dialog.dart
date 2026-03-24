@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:drift/drift.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +21,6 @@ void showCalendarEventDeleteConfirm(
   CalendarEvent event,
 ) {
   final l10n = AppLocalizations.of(context)!;
-  final localeName = Localizations.localeOf(context).toString();
   showDeleteConfirmDialog(
     context,
     title: l10n.dialogDeleteEventTitle,
@@ -49,6 +49,7 @@ void showCalendarEventDialog(
   CalendarEvent? event,
 }) {
   final l10n = AppLocalizations.of(context)!;
+  final localeName = Localizations.localeOf(context).toString();
   final isEditing = event != null;
   final titleController = TextEditingController(text: isEditing ? event.title : '');
   final descController =
@@ -276,11 +277,11 @@ void showCalendarEventDialog(
                                 event.copyWith(
                                   title: titleController.text.trim(),
                                   description: descController.text.isEmpty
-                                      ? null
-                                      : descController.text,
+                                      ? const Value.absent()
+                                      : Value(descController.text),
                                   location: locationController.text.isEmpty
-                                      ? null
-                                      : locationController.text,
+                                      ? const Value.absent()
+                                      : Value(locationController.text),
                                   startTime: startTime,
                                   endTime: endTime,
                                   isAllDay: isAllDay,
@@ -322,8 +323,6 @@ void showCalendarEventDialog(
                   const SizedBox(height: 16),
                 ],
               );
-            },
-          );
         },
       );
     },
