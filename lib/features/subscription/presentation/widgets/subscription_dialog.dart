@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:drift/drift.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -21,7 +22,6 @@ void showSubscriptionDeleteConfirm(
   Subscription subscription,
 ) {
   final l10n = AppLocalizations.of(context)!;
-  final localeName = Localizations.localeOf(context).toString();
   showDeleteConfirmDialog(
     context,
     title: l10n.dialogDeleteSubscriptionTitle,
@@ -49,6 +49,7 @@ void showSubscriptionDialog(
   Subscription? subscription,
 }) {
   final l10n = AppLocalizations.of(context)!;
+  final localeName = Localizations.localeOf(context).toString();
   final isEditing = subscription != null;
   final nameController = TextEditingController(text: isEditing ? subscription.name : '');
   final amountController = TextEditingController(text: isEditing ? subscription.amount.toString() : '');
@@ -215,7 +216,9 @@ void showSubscriptionDialog(
                                   startDate: startDate,
                                   nextBillingDate: nextBilling,
                                   billingCycle: billingCycle,
-                                  description: descController.text.isEmpty ? null : descController.text,
+                                  description: descController.text.isEmpty
+                                      ? const Value.absent()
+                                      : Value(descController.text),
                                 ),
                               );
                         } else {
@@ -251,8 +254,6 @@ void showSubscriptionDialog(
                   const SizedBox(height: 16),
                 ],
               );
-            },
-          );
         },
       );
     },

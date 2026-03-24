@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:drift/drift.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +17,6 @@ import '../providers/reminder_provider.dart';
 
 void showReminderDeleteConfirm(BuildContext context, WidgetRef ref, Reminder reminder) {
   final l10n = AppLocalizations.of(context)!;
-  final localeName = Localizations.localeOf(context).toString();
   showDeleteConfirmDialog(
     context,
     title: l10n.dialogDeleteReminderTitle,
@@ -40,6 +40,7 @@ void showReminderDeleteConfirm(BuildContext context, WidgetRef ref, Reminder rem
 
 void showReminderDialog(BuildContext context, WidgetRef ref, {Reminder? reminder}) {
   final l10n = AppLocalizations.of(context)!;
+  final localeName = Localizations.localeOf(context).toString();
   final isEditing = reminder != null;
   final titleController = TextEditingController(text: isEditing ? reminder.title : '');
   final descController = TextEditingController(text: isEditing ? reminder.description : '');
@@ -151,7 +152,9 @@ void showReminderDialog(BuildContext context, WidgetRef ref, {Reminder? reminder
                         await ref.read(reminderNotifierProvider.notifier).updateReminder(
                               reminder.copyWith(
                                 title: titleController.text.trim(),
-                                description: descController.text.isEmpty ? null : descController.text,
+                                description: descController.text.isEmpty
+                                    ? const Value.absent()
+                                    : Value(descController.text),
                                 remindTime: selectedDateTime,
                                 isRepeating: isRepeating,
                                 repeatType: repeatType,
