@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:drift/drift.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +18,6 @@ import 'expense_meta.dart';
 
 void showExpenseDeleteConfirm(BuildContext context, WidgetRef ref, Expense expense) {
   final l10n = AppLocalizations.of(context)!;
-  final localeName = Localizations.localeOf(context).toString();
   showDeleteConfirmDialog(
     context,
     title: l10n.dialogDeleteExpenseTitle,
@@ -41,6 +41,7 @@ void showExpenseDeleteConfirm(BuildContext context, WidgetRef ref, Expense expen
 
 void showExpenseDialog(BuildContext context, WidgetRef ref, {Expense? expense}) {
   final l10n = AppLocalizations.of(context)!;
+  final localeName = Localizations.localeOf(context).toString();
   final isEditing = expense != null;
   final amountController = TextEditingController(text: isEditing ? expense.amount.toString() : '');
   final descController = TextEditingController(text: isEditing ? expense.description : '');
@@ -161,9 +162,13 @@ void showExpenseDialog(BuildContext context, WidgetRef ref, {Expense? expense}) 
                                 expense.copyWith(
                                   amount: amount,
                                   category: selectedCategory,
-                                  description: descController.text.isEmpty ? null : descController.text,
+                                  description: descController.text.isEmpty
+                                      ? const Value.absent()
+                                      : Value(descController.text),
                                   date: selectedDate,
-                                  paymentMethod: paymentController.text.isEmpty ? null : paymentController.text,
+                                  paymentMethod: paymentController.text.isEmpty
+                                      ? const Value.absent()
+                                      : Value(paymentController.text),
                                 ),
                               );
                         } else {
@@ -195,8 +200,6 @@ void showExpenseDialog(BuildContext context, WidgetRef ref, {Expense? expense}) 
                   const SizedBox(height: 16),
                 ],
               );
-            },
-          );
         },
       );
     },
