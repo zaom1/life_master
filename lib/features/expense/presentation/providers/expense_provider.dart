@@ -1,12 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:drift/drift.dart';
 import '../../../../shared/data/database/app_database.dart';
-
-final databaseProvider = Provider<AppDatabase>((ref) {
-  final db = AppDatabase();
-  ref.onDispose(() => db.close());
-  return db;
-});
+import '../../../../shared/providers/async_action_notifier.dart';
+import '../../../../shared/providers/database_provider.dart';
 
 final expensesProvider = StreamProvider<List<Expense>>((ref) {
   final db = ref.watch(databaseProvider);
@@ -59,10 +55,10 @@ final monthlyExpenseProvider = Provider<double>((ref) {
   );
 });
 
-class ExpenseNotifier extends StateNotifier<AsyncValue<void>> {
+class ExpenseNotifier extends AsyncActionNotifier {
   final AppDatabase _db;
-  
-  ExpenseNotifier(this._db) : super(const AsyncValue.data(null));
+
+  ExpenseNotifier(this._db);
   
   Future<void> addExpense({
     required double amount,
@@ -71,8 +67,7 @@ class ExpenseNotifier extends StateNotifier<AsyncValue<void>> {
     required DateTime date,
     String? paymentMethod,
   }) async {
-    state = const AsyncValue.loading();
-    try {
+    await runAction(() async {
       await _db.insertExpense(ExpensesCompanion.insert(
         amount: amount,
         category: category,
@@ -80,26 +75,19 @@ class ExpenseNotifier extends StateNotifier<AsyncValue<void>> {
         date: date,
         paymentMethod: Value(paymentMethod),
       ));
-      state = const AsyncValue.data(null);
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
-    }
+    }, showLoading: true, rethrowOnError: true);
   }
   
   Future<void> deleteExpense(int id) async {
-    try {
+    await runAction(() async {
       await _db.deleteExpense(id);
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
   
   Future<void> updateExpense(Expense expense) async {
-    try {
+    await runAction(() async {
       await _db.updateExpense(expense.copyWith(updatedAt: DateTime.now()));
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
 }
 

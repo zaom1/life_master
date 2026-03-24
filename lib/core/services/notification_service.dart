@@ -42,9 +42,14 @@ class NotificationService {
     required String title,
     required String? body,
     required DateTime scheduledDate,
+    String repeatType = 'none',
   }) async {
     if (!_isSupported) return;
     if (!_initialized) await init();
+
+    if (scheduledDate.isBefore(DateTime.now()) && repeatType == 'none') {
+      return;
+    }
 
     final androidDetails = AndroidNotificationDetails(
       'reminder_channel',
@@ -66,15 +71,31 @@ class NotificationService {
       iOS: iosDetails,
     );
 
+    DateTimeComponents? matchComponents;
+    switch (repeatType) {
+      case 'daily':
+        matchComponents = DateTimeComponents.time;
+        break;
+      case 'weekly':
+        matchComponents = DateTimeComponents.dayOfWeekAndTime;
+        break;
+      case 'monthly':
+        matchComponents = DateTimeComponents.dayOfMonthAndTime;
+        break;
+      default:
+        matchComponents = null;
+    }
+
     await _notifications.zonedSchedule(
       id,
       title,
-      body ?? 'You have a reminder',
+      body ?? title,
       tz.TZDateTime.from(scheduledDate, tz.local),
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: matchComponents,
     );
   }
 

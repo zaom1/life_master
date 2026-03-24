@@ -2,22 +2,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:drift/drift.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../shared/data/database/app_database.dart';
-
-final databaseProvider = Provider<AppDatabase>((ref) {
-  final db = AppDatabase();
-  ref.onDispose(() => db.close());
-  return db;
-});
+import '../../../../shared/providers/async_action_notifier.dart';
+import '../../../../shared/providers/database_provider.dart';
 
 final remindersProvider = StreamProvider<List<Reminder>>((ref) {
   final db = ref.watch(databaseProvider);
   return db.watchAllReminders();
 });
 
-class ReminderNotifier extends StateNotifier<AsyncValue<void>> {
+class ReminderNotifier extends AsyncActionNotifier {
   final AppDatabase _db;
-  
-  ReminderNotifier(this._db) : super(const AsyncValue.data(null));
+
+  ReminderNotifier(this._db);
   
   Future<void> addReminder({
     required String title,
@@ -26,8 +22,7 @@ class ReminderNotifier extends StateNotifier<AsyncValue<void>> {
     bool isRepeating = false,
     String repeatType = 'none',
   }) async {
-    state = const AsyncValue.loading();
-    try {
+    await runAction(() async {
       final id = await _db.insertReminder(RemindersCompanion.insert(
         title: title,
         description: Value(description),
@@ -42,36 +37,44 @@ class ReminderNotifier extends StateNotifier<AsyncValue<void>> {
         title: title,
         body: description,
         scheduledDate: remindTime,
+        repeatType: isRepeating ? repeatType : 'none',
       );
-      
-      state = const AsyncValue.data(null);
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
-    }
+    }, showLoading: true, rethrowOnError: true);
   }
   
   Future<void> toggleComplete(Reminder reminder) async {
-    try {
-      await _db.updateReminder(reminder.copyWith(
+    await runAction(() async {
+      final updatedReminder = reminder.copyWith(
         isCompleted: !reminder.isCompleted,
         updatedAt: DateTime.now(),
-      ));
-    } catch (e) {
-      // Handle error
-    }
+      );
+
+      await _db.updateReminder(updatedReminder);
+
+      if (updatedReminder.isCompleted) {
+        await NotificationService().cancelReminder(updatedReminder.id);
+      } else {
+        await NotificationService().scheduleReminder(
+          id: updatedReminder.id,
+          title: updatedReminder.title,
+          body: updatedReminder.description,
+          scheduledDate: updatedReminder.remindTime,
+          repeatType:
+              updatedReminder.isRepeating ? updatedReminder.repeatType : 'none',
+        );
+      }
+    }, rethrowOnError: true);
   }
   
   Future<void> deleteReminder(int id) async {
-    try {
+    await runAction(() async {
       await _db.deleteReminder(id);
       await NotificationService().cancelReminder(id);
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
   
   Future<void> updateReminder(Reminder reminder) async {
-    try {
+    await runAction(() async {
       await _db.updateReminder(reminder.copyWith(updatedAt: DateTime.now()));
       
       // Reschedule notification if not completed
@@ -81,13 +84,12 @@ class ReminderNotifier extends StateNotifier<AsyncValue<void>> {
           title: reminder.title,
           body: reminder.description,
           scheduledDate: reminder.remindTime,
+          repeatType: reminder.isRepeating ? reminder.repeatType : 'none',
         );
       } else {
         await NotificationService().cancelReminder(reminder.id);
       }
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
 }
 

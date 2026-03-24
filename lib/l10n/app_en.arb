@@ -1,0 +1,243 @@
+{
+  "@@locale": "en",
+  "appTitle": "LifeMaster",
+  "navTodo": "Todo",
+  "navReminder": "Reminder",
+  "navCalendar": "Calendar",
+  "navExpense": "Expense",
+  "navSubscription": "Subscription",
+  "pageTodoTitle": "Todos",
+  "pageReminderTitle": "Reminders",
+  "pageCalendarTitle": "Calendar",
+  "pageExpenseTitle": "Expenses",
+  "pageSubscriptionTitle": "Subscriptions",
+  "labelToday": "Today",
+  "labelAll": "All",
+  "actionAddTodo": "Add Todo",
+  "actionAddReminder": "Add Reminder",
+  "actionAddExpense": "Add Expense",
+  "actionAddSubscription": "Add Subscription",
+  "actionAddEvent": "Add Event",
+  "actionCancel": "Cancel",
+  "actionDelete": "Delete",
+  "errorLoadFailed": "Load failed: {error}",
+  "@errorLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorRequiredField": "Please enter {field}",
+  "@errorRequiredField": {
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "errorAmountMustBePositive": "{field} must be greater than 0",
+  "@errorAmountMustBePositive": {
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "errorActionFailed": "Action failed: {error}",
+  "@errorActionFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorDeleteFailed": "Delete failed: {error}",
+  "@errorDeleteFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorSaveFailed": "Save failed: {error}",
+  "@errorSaveFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "successTodoAdded": "Todo added",
+  "successTodoUpdated": "Todo updated",
+  "successTodoDeleted": "Todo deleted",
+  "successTodoCompleted": "Todo completed",
+  "successTodoRestored": "Todo restored",
+  "successReminderAdded": "Reminder added",
+  "successReminderUpdated": "Reminder updated",
+  "successReminderDeleted": "Reminder deleted",
+  "successReminderCompleted": "Reminder completed",
+  "successReminderRestored": "Reminder restored",
+  "successEventAdded": "Event added",
+  "successEventUpdated": "Event updated",
+  "successEventDeleted": "Event deleted",
+  "successExpenseAdded": "Expense recorded",
+  "successExpenseUpdated": "Expense updated",
+  "successExpenseDeleted": "Expense deleted",
+  "successSubscriptionAdded": "Subscription added",
+  "successSubscriptionUpdated": "Subscription updated",
+  "successSubscriptionDeleted": "Subscription deleted",
+  "successSubscriptionEnabled": "Subscription enabled",
+  "successSubscriptionPaused": "Subscription paused",
+  "dialogDeleteTodoTitle": "Delete Todo",
+  "dialogDeleteReminderTitle": "Delete Reminder",
+  "dialogDeleteEventTitle": "Delete Event",
+  "dialogDeleteExpenseTitle": "Delete Expense",
+  "dialogDeleteSubscriptionTitle": "Delete Subscription",
+  "dialogDeleteTodoMessage": "Are you sure to delete \"{name}\"?",
+  "@dialogDeleteTodoMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteReminderMessage": "Are you sure to delete \"{name}\"?",
+  "@dialogDeleteReminderMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteEventMessage": "Are you sure to delete \"{name}\"?",
+  "@dialogDeleteEventMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteExpenseMessage": "Are you sure to delete this expense record?",
+  "dialogDeleteSubscriptionMessage": "Are you sure to delete \"{name}\"?",
+  "@dialogDeleteSubscriptionMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "fieldTodoTitle": "todo title",
+  "fieldReminderTitle": "reminder title",
+  "fieldEventTitle": "event title",
+  "fieldSubscriptionName": "subscription name",
+  "fieldAmount": "amount",
+  "dialogEditTodo": "Edit Todo",
+  "dialogNewTodo": "New Todo",
+  "dialogEditReminder": "Edit Reminder",
+  "dialogNewReminder": "New Reminder",
+  "dialogEditEvent": "Edit Event",
+  "dialogNewEvent": "New Event",
+  "dialogEditExpense": "Edit Expense",
+  "dialogNewExpense": "Record Expense",
+  "dialogEditSubscription": "Edit Subscription",
+  "dialogNewSubscription": "Add Subscription",
+  "fieldCategory": "Category",
+  "fieldBillingCycle": "Billing Cycle",
+  "fieldDescriptionOptional": "Description (optional)",
+  "hintDescriptionDetail": "Add details...",
+  "hintTodoTitle": "Enter a task title...",
+  "hintReminderTitle": "Enter a reminder title...",
+  "hintEventTitle": "Enter an event title...",
+  "hintSubscriptionName": "e.g. Netflix, Spotify...",
+  "hintSubscriptionDesc": "Add notes...",
+  "fieldLocationOptional": "Location (optional)",
+  "hintLocation": "Add a location...",
+  "fieldPaymentOptional": "Payment Method (optional)",
+  "hintPaymentMethod": "e.g. Card, Cash, Bank transfer...",
+  "fieldRepeatFrequency": "Repeat Frequency",
+  "labelRepeatReminder": "Repeat Reminder",
+  "labelSetDueDate": "Set due date",
+  "labelDueDate": "Due: {date}",
+  "@labelDueDate": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "labelMarkImportant": "Mark as important",
+  "labelMarkImportantHint": "Important tasks show a star",
+  "labelAllDayEvent": "All-day event",
+  "sectionTimeSettings": "Time Settings",
+  "sectionColorTag": "Color Tag",
+  "labelStartTime": "Start Time",
+  "labelEndTime": "End Time",
+  "labelStartDate": "Start Date",
+  "badgeDueSoon": "Due Soon",
+  "badgeOverdue": "Overdue",
+  "repeatDaily": "Daily",
+  "repeatWeekly": "Weekly",
+  "repeatMonthly": "Monthly",
+  "billingWeekly": "Weekly",
+  "billingMonthly": "Monthly",
+  "billingYearly": "Yearly",
+  "actionSaveChanges": "Save Changes",
+  "actionRecordExpense": "Record Expense",
+  "expenseCategoryFood": "Food",
+  "expenseCategoryTransport": "Transport",
+  "expenseCategoryShopping": "Shopping",
+  "expenseCategoryEntertainment": "Entertainment",
+  "expenseCategoryHealth": "Health",
+  "expenseCategoryEducation": "Education",
+  "expenseCategoryHousing": "Housing",
+  "expenseCategoryUtilities": "Utilities",
+  "expenseCategoryOther": "Other",
+  "todoCategoryGeneral": "General",
+  "todoCategoryWork": "Work",
+  "todoCategoryPersonal": "Personal",
+  "todoCategoryHealth": "Health",
+  "todoCategoryShopping": "Shopping",
+  "todoCategoryFinance": "Finance",
+  "subscriptionCategoryStreaming": "Streaming",
+  "subscriptionCategoryMusic": "Music",
+  "subscriptionCategoryGaming": "Gaming",
+  "subscriptionCategoryProductivity": "Productivity",
+  "subscriptionCategoryCloudStorage": "Cloud Storage",
+  "subscriptionCategoryNews": "News",
+  "subscriptionCategoryFitness": "Fitness",
+  "subscriptionCategoryOther": "Other",
+  "labelAllDay": "All Day",
+  "expenseTrendRecentMonths": "Recent 6-Month Trend",
+  "weekdayMon": "Mon",
+  "weekdayTue": "Tue",
+  "weekdayWed": "Wed",
+  "weekdayThu": "Thu",
+  "weekdayFri": "Fri",
+  "weekdaySat": "Sat",
+  "weekdaySun": "Sun",
+  "todoProgressToday": "Today's Progress",
+  "todoProgressCompleted": "{completed} / {total} completed",
+  "@todoProgressCompleted": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "todoEmptyTitle": "No todos yet",
+  "todoEmptyHint": "Tap + to add a new task",
+  "reminderPendingCount": "Pending ({count})",
+  "@reminderPendingCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reminderCompletedCount": "Completed ({count})",
+  "@reminderCompletedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reminderEmptyTitle": "No reminders yet",
+  "reminderEmptyHint": "Tap + to add a reminder",
+  "calendarNoEventsToday": "No events today",
+  "expenseMonthlyTotal": "This Month",
+  "expenseTotal": "Total",
+  "expenseSearchHint": "Search category or description...",
+  "expenseEmptyTitle": "No expense records",
+  "expenseEmptyHint": "Tap + to add an expense",
+  "subscriptionMonthlyTotal": "Monthly Subscriptions",
+  "subscriptionPerMonth": "per month",
+  "subscriptionActiveCount": "Active ({count})",
+  "@subscriptionActiveCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "subscriptionPausedCount": "Paused ({count})",
+  "@subscriptionPausedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "subscriptionEmptyTitle": "No subscriptions",
+  "subscriptionEmptyHint": "Tap + to add a subscription"
+}

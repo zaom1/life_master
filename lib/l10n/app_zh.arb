@@ -1,0 +1,243 @@
+{
+  "@@locale": "zh",
+  "appTitle": "生活管家",
+  "navTodo": "待办",
+  "navReminder": "提醒",
+  "navCalendar": "日历",
+  "navExpense": "支出",
+  "navSubscription": "订阅",
+  "pageTodoTitle": "待办事项",
+  "pageReminderTitle": "提醒事项",
+  "pageCalendarTitle": "日历",
+  "pageExpenseTitle": "支出记录",
+  "pageSubscriptionTitle": "订阅管理",
+  "labelToday": "今天",
+  "labelAll": "全部",
+  "actionAddTodo": "添加待办",
+  "actionAddReminder": "添加提醒",
+  "actionAddExpense": "添加支出",
+  "actionAddSubscription": "添加订阅",
+  "actionAddEvent": "添加日程",
+  "actionCancel": "取消",
+  "actionDelete": "删除",
+  "errorLoadFailed": "加载失败: {error}",
+  "@errorLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorRequiredField": "请填写{field}",
+  "@errorRequiredField": {
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "errorAmountMustBePositive": "{field}需大于 0",
+  "@errorAmountMustBePositive": {
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "errorActionFailed": "操作失败: {error}",
+  "@errorActionFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorDeleteFailed": "删除失败: {error}",
+  "@errorDeleteFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "errorSaveFailed": "保存失败: {error}",
+  "@errorSaveFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "successTodoAdded": "待办已添加",
+  "successTodoUpdated": "待办已更新",
+  "successTodoDeleted": "待办已删除",
+  "successTodoCompleted": "任务已完成",
+  "successTodoRestored": "任务已恢复",
+  "successReminderAdded": "提醒已添加",
+  "successReminderUpdated": "提醒已更新",
+  "successReminderDeleted": "提醒已删除",
+  "successReminderCompleted": "提醒已完成",
+  "successReminderRestored": "提醒已恢复",
+  "successEventAdded": "日程已添加",
+  "successEventUpdated": "日程已更新",
+  "successEventDeleted": "日程已删除",
+  "successExpenseAdded": "支出已记录",
+  "successExpenseUpdated": "支出已更新",
+  "successExpenseDeleted": "支出已删除",
+  "successSubscriptionAdded": "订阅已添加",
+  "successSubscriptionUpdated": "订阅已更新",
+  "successSubscriptionDeleted": "订阅已删除",
+  "successSubscriptionEnabled": "订阅已启用",
+  "successSubscriptionPaused": "订阅已暂停",
+  "dialogDeleteTodoTitle": "删除待办",
+  "dialogDeleteReminderTitle": "删除提醒",
+  "dialogDeleteEventTitle": "删除日程",
+  "dialogDeleteExpenseTitle": "删除支出",
+  "dialogDeleteSubscriptionTitle": "删除订阅",
+  "dialogDeleteTodoMessage": "确定要删除「{name}」吗？",
+  "@dialogDeleteTodoMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteReminderMessage": "确定要删除「{name}」吗？",
+  "@dialogDeleteReminderMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteEventMessage": "确定要删除「{name}」吗？",
+  "@dialogDeleteEventMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "dialogDeleteExpenseMessage": "确定要删除这条支出记录吗？",
+  "dialogDeleteSubscriptionMessage": "确定要删除「{name}」吗？",
+  "@dialogDeleteSubscriptionMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "fieldTodoTitle": "任务标题",
+  "fieldReminderTitle": "提醒标题",
+  "fieldEventTitle": "日程标题",
+  "fieldSubscriptionName": "订阅名称",
+  "fieldAmount": "金额",
+  "dialogEditTodo": "编辑待办",
+  "dialogNewTodo": "新建待办",
+  "dialogEditReminder": "编辑提醒",
+  "dialogNewReminder": "新建提醒",
+  "dialogEditEvent": "编辑日程",
+  "dialogNewEvent": "新建日程",
+  "dialogEditExpense": "编辑支出",
+  "dialogNewExpense": "记录支出",
+  "dialogEditSubscription": "编辑订阅",
+  "dialogNewSubscription": "添加订阅",
+  "fieldCategory": "分类",
+  "fieldBillingCycle": "扣费周期",
+  "fieldDescriptionOptional": "备注说明（可选）",
+  "hintDescriptionDetail": "添加详细说明...",
+  "hintTodoTitle": "输入任务名称...",
+  "hintReminderTitle": "输入提醒名称...",
+  "hintEventTitle": "输入日程名称...",
+  "hintSubscriptionName": "如：Netflix、Spotify...",
+  "hintSubscriptionDesc": "添加备注...",
+  "fieldLocationOptional": "地点（可选）",
+  "hintLocation": "添加地点...",
+  "fieldPaymentOptional": "支付方式（可选）",
+  "hintPaymentMethod": "如：微信、支付宝、现金...",
+  "fieldRepeatFrequency": "重复频率",
+  "labelRepeatReminder": "重复提醒",
+  "labelSetDueDate": "设置截止日期",
+  "labelDueDate": "截止：{date}",
+  "@labelDueDate": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "labelMarkImportant": "标记为重要",
+  "labelMarkImportantHint": "重要任务会显示星标",
+  "labelAllDayEvent": "全天日程",
+  "sectionTimeSettings": "时间设置",
+  "sectionColorTag": "颜色标签",
+  "labelStartTime": "开始时间",
+  "labelEndTime": "结束时间",
+  "labelStartDate": "开始日期",
+  "badgeDueSoon": "即将到期",
+  "badgeOverdue": "已过期",
+  "repeatDaily": "每天",
+  "repeatWeekly": "每周",
+  "repeatMonthly": "每月",
+  "billingWeekly": "每周",
+  "billingMonthly": "每月",
+  "billingYearly": "每年",
+  "actionSaveChanges": "保存修改",
+  "actionRecordExpense": "记录支出",
+  "expenseCategoryFood": "餐饮",
+  "expenseCategoryTransport": "交通",
+  "expenseCategoryShopping": "购物",
+  "expenseCategoryEntertainment": "娱乐",
+  "expenseCategoryHealth": "医疗",
+  "expenseCategoryEducation": "教育",
+  "expenseCategoryHousing": "住房",
+  "expenseCategoryUtilities": "水电燃气",
+  "expenseCategoryOther": "其他",
+  "todoCategoryGeneral": "通用",
+  "todoCategoryWork": "工作",
+  "todoCategoryPersonal": "个人",
+  "todoCategoryHealth": "健康",
+  "todoCategoryShopping": "购物",
+  "todoCategoryFinance": "财务",
+  "subscriptionCategoryStreaming": "视频流媒体",
+  "subscriptionCategoryMusic": "音乐",
+  "subscriptionCategoryGaming": "游戏",
+  "subscriptionCategoryProductivity": "效率工具",
+  "subscriptionCategoryCloudStorage": "云存储",
+  "subscriptionCategoryNews": "新闻资讯",
+  "subscriptionCategoryFitness": "健身",
+  "subscriptionCategoryOther": "其他",
+  "labelAllDay": "全天",
+  "expenseTrendRecentMonths": "近6个月趋势",
+  "weekdayMon": "一",
+  "weekdayTue": "二",
+  "weekdayWed": "三",
+  "weekdayThu": "四",
+  "weekdayFri": "五",
+  "weekdaySat": "六",
+  "weekdaySun": "日",
+  "todoProgressToday": "今日进度",
+  "todoProgressCompleted": "{completed} / {total} 已完成",
+  "@todoProgressCompleted": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "todoEmptyTitle": "暂无待办事项",
+  "todoEmptyHint": "点击右下角\"+\"添加新任务",
+  "reminderPendingCount": "待处理 ({count})",
+  "@reminderPendingCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reminderCompletedCount": "已完成 ({count})",
+  "@reminderCompletedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reminderEmptyTitle": "暂无提醒事项",
+  "reminderEmptyHint": "点击右下角\"+\"添加新提醒",
+  "calendarNoEventsToday": "今天没有日程",
+  "expenseMonthlyTotal": "本月支出",
+  "expenseTotal": "累计支出",
+  "expenseSearchHint": "搜索分类或描述...",
+  "expenseEmptyTitle": "暂无支出记录",
+  "expenseEmptyHint": "点击右下角\"+\"添加支出",
+  "subscriptionMonthlyTotal": "月度订阅总计",
+  "subscriptionPerMonth": "每月",
+  "subscriptionActiveCount": "活跃订阅 ({count})",
+  "@subscriptionActiveCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "subscriptionPausedCount": "已暂停 ({count})",
+  "@subscriptionPausedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "subscriptionEmptyTitle": "暂无订阅记录",
+  "subscriptionEmptyHint": "点击右下角\"+\"添加订阅服务"
+}

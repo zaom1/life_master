@@ -1,115 +1,144 @@
 # LifeMaster
 
-[![Flutter CI](https://github.com/yourusername/lifemaster/actions/workflows/flutter.yml/badge.svg)](https://github.com/yourusername/lifemaster/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+LifeMaster is a Flutter-based personal management app that combines tasks, reminders, calendar planning, expense tracking, and subscription management in one place.
 
-LifeMaster is a comprehensive personal life management app built with Flutter. It helps you organize your daily tasks, manage expenses, track subscriptions, set reminders, and schedule events all in one place.
+It is designed as a practical all-in-one productivity app with local-first data storage and a responsive UI for Android, iOS, and Web.
 
 ## Features
 
-- **Todo Management**: Create, edit, and organize tasks with categories, due dates, and priority levels
-- **Expense Tracker**: Record and categorize expenses with monthly trend charts
-- **Subscription Manager**: Track recurring subscriptions with billing cycle reminders
-- **Calendar Events**: Schedule and manage events with custom colors
-- **Smart Reminders**: Set one-time or recurring reminders with local notifications
-- **Search & Filter**: Quickly find expenses by category or description
-- **Dark Mode Support**: Automatic theme switching based on system preference
-
-## Screenshots
-
-*(Add your screenshots here)*
+- Todo management with categories, due dates, and priority tags
+- Reminder scheduling with local notifications and repeat options
+- Calendar event planning with daily/monthly views
+- Expense tracking with search and six-month trend charts
+- Subscription tracking with billing cycles and active/inactive states
+- Riverpod-based state management and Drift-powered local database
 
 ## Tech Stack
 
-- **Framework**: Flutter 3.24+
+- **Framework**: Flutter (Material 3)
 - **State Management**: Riverpod
-- **Database**: Drift (SQLite)
-- **Navigation**: Go Router
+- **Database**: Drift (SQLite, with Web support)
+- **Navigation**: go_router
 - **Charts**: fl_chart
 - **Notifications**: flutter_local_notifications
+
+## Project Structure
+
+```text
+lib/
+  core/
+    constants/
+    router/
+    services/
+    theme/
+  features/
+    calendar/
+    expense/
+    reminder/
+    subscription/
+    todo/
+  shared/
+    data/
+    presentation/
+    providers/
+  app.dart
+  main.dart
+```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Flutter SDK 3.24.0 or higher
-- Dart SDK 3.0.0 or higher
-- Android Studio / Xcode (for mobile development)
+- Flutter SDK 3.24+
+- Dart SDK 3.0+
+- Android Studio / Xcode (for mobile builds)
 
 ### Installation
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/lifemaster.git
+git clone https://github.com/<your-username>/lifemaster.git
 cd lifemaster
-```
-
-2. Install dependencies:
-```bash
 flutter pub get
-```
-
-3. Generate required code:
-```bash
-flutter pub run build_runner build --delete-conflicting-outputs
-```
-
-4. Run the app:
-```bash
+dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
-### Building for Release
+## Development
 
-**Android:**
+### Static Analysis
+
 ```bash
-flutter build apk --release
+flutter analyze
 ```
 
-**iOS:**
+### Run Tests
+
 ```bash
-flutter build ios --release
+flutter test
 ```
 
-## Project Structure
+### Build Web
 
+```bash
+flutter config --enable-web
+flutter build web --release
 ```
-lib/
-├── core/
-│   ├── constants/      # App constants
-│   ├── router/         # Navigation configuration
-│   ├── services/       # Notification service
-│   ├── theme/          # App themes
-│   └── utils/          # Utility functions
-├── features/
-│   ├── calendar/       # Calendar events feature
-│   ├── expense/        # Expense tracking feature
-│   ├── reminder/       # Reminders feature
-│   ├── subscription/   # Subscription management feature
-│   └── todo/           # Todo management feature
-├── shared/
-│   ├── data/           # Database configuration
-│   ├── domain/         # Shared models
-│   └── presentation/   # Shared widgets
-├── app.dart            # Main app widget
-└── main.dart           # Entry point
+
+### Localization (i18n)
+
+The app uses Flutter's built-in localization generator (`gen_l10n`) with ARB files:
+
+- `lib/l10n/app_en.arb`
+- `lib/l10n/app_zh.arb`
+
+When adding or updating localized text:
+
+1. Add keys to both ARB files
+2. Run localization generation
+3. Use `AppLocalizations.of(context)!` in UI code
+4. Keep business identifiers (like category IDs) language-neutral and map them to localized labels at the presentation layer
+5. Avoid hardcoded user-facing strings in Dart files
+
+```bash
+flutter gen-l10n
 ```
+
+#### Localization Checklist
+
+When adding a new feature or screen, run through this checklist:
+
+- Add user-facing text to both `lib/l10n/app_en.arb` and `lib/l10n/app_zh.arb`
+- Avoid hardcoded UI strings in Dart files
+- Keep business values language-neutral (e.g. `weekly`, `Food`) and localize only at the presentation layer
+- Use locale-aware date/number formatting via `intl` (do not hardcode date patterns per language)
+- Regenerate localization files with `flutter gen-l10n`
+- Run `flutter analyze` and `flutter test` before opening a PR
+
+## CI/CD
+
+This repository includes a GitHub Actions workflow for building and deploying the Flutter Web app to GitHub Pages:
+
+- Workflow file: `.github/workflows/deploy_web.yml`
+
+## Roadmap
+
+- Improve test coverage for providers and business logic
+- Add robust database migration strategy for schema updates
+- Expand localization support and language switching
+- Improve recurring reminder behavior across platforms
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Commit your changes with clear messages
+4. Run `flutter analyze` and `flutter test`
+5. Open a pull request
+
+For more details, see `CONTRIBUTING.md`.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Built with [Flutter](https://flutter.dev)
-- Icons by [Material Design](https://material.io/resources/icons)
+This project is licensed under the MIT License. See `LICENSE` for details.

@@ -1,12 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:drift/drift.dart';
 import '../../../../shared/data/database/app_database.dart';
-
-final databaseProvider = Provider<AppDatabase>((ref) {
-  final db = AppDatabase();
-  ref.onDispose(() => db.close());
-  return db;
-});
+import '../../../../shared/providers/async_action_notifier.dart';
+import '../../../../shared/providers/database_provider.dart';
 
 final calendarEventsProvider = StreamProvider<List<CalendarEvent>>((ref) {
   final db = ref.watch(databaseProvider);
@@ -15,10 +11,10 @@ final calendarEventsProvider = StreamProvider<List<CalendarEvent>>((ref) {
 
 final selectedDateProvider = StateProvider<DateTime>((ref) => DateTime.now());
 
-class CalendarEventNotifier extends StateNotifier<AsyncValue<void>> {
+class CalendarEventNotifier extends AsyncActionNotifier {
   final AppDatabase _db;
-  
-  CalendarEventNotifier(this._db) : super(const AsyncValue.data(null));
+
+  CalendarEventNotifier(this._db);
   
   Future<void> addEvent({
     required String title,
@@ -29,8 +25,7 @@ class CalendarEventNotifier extends StateNotifier<AsyncValue<void>> {
     String color = '#10B981',
     bool isAllDay = false,
   }) async {
-    state = const AsyncValue.loading();
-    try {
+    await runAction(() async {
       await _db.insertCalendarEvent(CalendarEventsCompanion.insert(
         title: title,
         description: Value(description),
@@ -40,26 +35,19 @@ class CalendarEventNotifier extends StateNotifier<AsyncValue<void>> {
         color: Value(color),
         isAllDay: Value(isAllDay),
       ));
-      state = const AsyncValue.data(null);
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
-    }
+    }, showLoading: true, rethrowOnError: true);
   }
   
   Future<void> deleteEvent(int id) async {
-    try {
+    await runAction(() async {
       await _db.deleteCalendarEvent(id);
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
   
   Future<void> updateEvent(CalendarEvent event) async {
-    try {
+    await runAction(() async {
       await _db.updateCalendarEvent(event.copyWith(updatedAt: DateTime.now()));
-    } catch (e) {
-      // Handle error
-    }
+    }, rethrowOnError: true);
   }
 }
 

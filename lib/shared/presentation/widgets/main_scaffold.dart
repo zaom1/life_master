@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/theme/app_theme.dart';
 
-final _currentIndexProvider = StateProvider<int>((ref) => 0);
+int _indexFromLocation(String location) {
+  if (location.startsWith('/reminder')) {
+    return 1;
+  }
+  if (location.startsWith('/calendar')) {
+    return 2;
+  }
+  if (location.startsWith('/expense')) {
+    return 3;
+  }
+  if (location.startsWith('/subscription')) {
+    return 4;
+  }
+  return 0;
+}
 
-class MainScaffold extends ConsumerWidget {
+class MainScaffold extends StatelessWidget {
   final Widget child;
-  
+
   const MainScaffold({super.key, required this.child});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(_currentIndexProvider);
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final location = GoRouterState.of(context).uri.path;
-    
-    // 根据当前位置更新索引
-    int newIndex = 0;
-    if (location.contains('/reminder')) {
-      newIndex = 1;
-    } else if (location.contains('/calendar')) {
-      newIndex = 2;
-    } else if (location.contains('/expense')) {
-      newIndex = 3;
-    } else if (location.contains('/subscription')) {
-      newIndex = 4;
-    }
-    
-    // 如果索引发生变化，更新状态
-    if (newIndex != currentIndex) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(_currentIndexProvider.notifier).state = newIndex;
-      });
-    }
-    
+    final selectedIndex = _indexFromLocation(location);
+
     return Scaffold(
       body: child,
       bottomNavigationBar: Container(
@@ -47,10 +44,9 @@ class MainScaffold extends ConsumerWidget {
           ],
         ),
         child: NavigationBar(
-          selectedIndex: newIndex,
+          selectedIndex: selectedIndex,
           height: 64,
           onDestinationSelected: (index) {
-            ref.read(_currentIndexProvider.notifier).state = index;
             switch (index) {
               case 0:
                 context.go('/todo');
@@ -69,31 +65,38 @@ class MainScaffold extends ConsumerWidget {
                 break;
             }
           },
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.check_circle_outline),
-              selectedIcon: Icon(Icons.check_circle, color: AppTheme.todoColor),
-              label: '待办',
+              icon: const Icon(Icons.check_circle_outline),
+              selectedIcon:
+                  const Icon(Icons.check_circle, color: AppTheme.todoColor),
+              label: l10n.navTodo,
             ),
             NavigationDestination(
-              icon: Icon(Icons.notifications_outlined),
-              selectedIcon: Icon(Icons.notifications, color: AppTheme.reminderColor),
-              label: '提醒',
+              icon: const Icon(Icons.notifications_outlined),
+              selectedIcon:
+                  const Icon(Icons.notifications, color: AppTheme.reminderColor),
+              label: l10n.navReminder,
             ),
             NavigationDestination(
-              icon: Icon(Icons.calendar_month_outlined),
-              selectedIcon: Icon(Icons.calendar_month, color: AppTheme.calendarColor),
-              label: '日历',
+              icon: const Icon(Icons.calendar_month_outlined),
+              selectedIcon:
+                  const Icon(Icons.calendar_month, color: AppTheme.calendarColor),
+              label: l10n.navCalendar,
             ),
             NavigationDestination(
-              icon: Icon(Icons.account_balance_wallet_outlined),
-              selectedIcon: Icon(Icons.account_balance_wallet, color: AppTheme.expenseColor),
-              label: '支出',
+              icon: const Icon(Icons.account_balance_wallet_outlined),
+              selectedIcon: const Icon(
+                Icons.account_balance_wallet,
+                color: AppTheme.expenseColor,
+              ),
+              label: l10n.navExpense,
             ),
             NavigationDestination(
-              icon: Icon(Icons.subscriptions_outlined),
-              selectedIcon: Icon(Icons.subscriptions, color: AppTheme.subscriptionColor),
-              label: '订阅',
+              icon: const Icon(Icons.subscriptions_outlined),
+              selectedIcon:
+                  const Icon(Icons.subscriptions, color: AppTheme.subscriptionColor),
+              label: l10n.navSubscription,
             ),
           ],
         ),
