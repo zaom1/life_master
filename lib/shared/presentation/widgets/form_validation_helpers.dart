@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 
 void showFormError(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:drift/drift.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +18,6 @@ import 'todo_meta.dart';
 
 void showTodoDeleteConfirm(BuildContext context, WidgetRef ref, Todo todo) {
   final l10n = AppLocalizations.of(context)!;
-  final localeName = Localizations.localeOf(context).toString();
   showDeleteConfirmDialog(
     context,
     title: l10n.dialogDeleteTodoTitle,
@@ -41,6 +41,7 @@ void showTodoDeleteConfirm(BuildContext context, WidgetRef ref, Todo todo) {
 
 void showTodoDialog(BuildContext context, WidgetRef ref, {Todo? todo}) {
   final l10n = AppLocalizations.of(context)!;
+  final localeName = Localizations.localeOf(context).toString();
   final isEditing = todo != null;
   final titleController = TextEditingController(text: isEditing ? todo.title : '');
   final descController =
@@ -165,10 +166,12 @@ void showTodoDialog(BuildContext context, WidgetRef ref, {Todo? todo}) {
                               todo.copyWith(
                                 title: titleController.text.trim(),
                                 description: descController.text.isEmpty
-                                    ? null
-                                    : descController.text,
+                                    ? const Value.absent()
+                                    : Value(descController.text),
                                 category: selectedCategory,
-                                dueDate: dueDate,
+                                dueDate: dueDate == null
+                                    ? const Value.absent()
+                                    : Value(dueDate),
                                 isImportant: isImportant,
                               ),
                             );

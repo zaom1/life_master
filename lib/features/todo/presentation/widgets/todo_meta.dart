@@ -1,4 +1,4 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lifemaster/l10n/app_localizations.dart';
 
 String todoCategoryLabel(AppLocalizations l10n, String category) {
   switch (category) {
